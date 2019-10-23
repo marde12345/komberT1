@@ -14,6 +14,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +27,13 @@ public class Scan extends Activity {
 	private TextView warning;
 	private TextView timeRemaining;
 	private Button calibrate;
-	private int readingCount = 30;
+	private int readingCount = 15;
 	private int currentCount;
 	String currentPositionName;
 	WifiManager wifi;
 	Timer timer;
 	TimerTask myTimerTask;
+	LottieAnimationView nyancat;
 	
 	public class ResultData {
 		private Router router;
@@ -61,6 +64,7 @@ public class Scan extends Activity {
 		warning = (TextView) findViewById(R.id.TextView1);
 		timeRemaining = (TextView) findViewById(R.id.TextView2);
 		calibrate = (Button) findViewById(R.id.start);
+		nyancat = (LottieAnimationView) findViewById(R.id.nyancat);
 		
 		wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 		Intent intent = getIntent();
@@ -88,6 +92,9 @@ public class Scan extends Activity {
 		calibrate.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				nyancat.setAnimation("nyan-cat.json");
+				nyancat.playAnimation();
+
 				calibrate.setEnabled(false);
 				warning.setText("DO NOT MOVE FOR");
 				resultsData = new ArrayList<ResultData>();
