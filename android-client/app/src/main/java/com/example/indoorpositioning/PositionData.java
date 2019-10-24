@@ -1,6 +1,8 @@
 package com.example.indoorpositioning;
 
 
+import com.example.indoorpositioning.Model.Router;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +21,8 @@ public class PositionData implements Serializable {
         routers = new HashMap<String, String>();
 
 	}
-	public void addValue(Router router,int strength){
+
+	public void addValue(Router router, int strength) {
 
 		values.put(router.getBSSID(), strength);
         routers.put(router.getBSSID(),router.getSSID());

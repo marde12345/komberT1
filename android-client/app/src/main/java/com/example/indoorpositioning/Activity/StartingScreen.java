@@ -1,27 +1,21 @@
-package com.example.indoorpositioning;
+package com.example.indoorpositioning.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
+
+import com.example.indoorpositioning.FetchData;
+import com.example.indoorpositioning.R;
 
 public class StartingScreen extends Activity {
-    private Button learnButton;
-    private Button locateButton;
-    private Button syncButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starting_screen);
     }
-
 
     public void onClick(View view) {
 
