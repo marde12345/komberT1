@@ -1,4 +1,4 @@
-package com.example.indoorpositioning;
+package com.example.indoorpositioning.Activity;
 
 import java.util.ArrayList;
 
@@ -7,10 +7,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Context;
-import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 
@@ -21,8 +18,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -34,6 +29,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.indoorpositioning.Helper.DatabaseHelper;
+import com.example.indoorpositioning.Model.Router;
+import com.example.indoorpositioning.PositionData;
+import com.example.indoorpositioning.R;
+import com.example.indoorpositioning.Submit;
+import com.example.indoorpositioning.SwipeDismissListViewTouchListener;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;

@@ -1,4 +1,4 @@
-package com.example.indoorpositioning;
+package com.example.indoorpositioning.Activity;
 
 import android.Manifest;
 import android.app.Activity;
@@ -21,6 +21,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.indoorpositioning.Helper.DatabaseHelper;
+import com.example.indoorpositioning.Model.Router;
+import com.example.indoorpositioning.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.indoorpositioning;
+package com.example.indoorpositioning.Model;
 
 import java.io.Serializable;
 

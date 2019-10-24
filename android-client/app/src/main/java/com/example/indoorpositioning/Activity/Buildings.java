@@ -1,4 +1,4 @@
-package com.example.indoorpositioning;
+package com.example.indoorpositioning.Activity;
 
 import java.util.ArrayList;
 
@@ -16,8 +16,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemLongClickListener;
+
+import com.example.indoorpositioning.Helper.DatabaseHelper;
+import com.example.indoorpositioning.R;
+import com.example.indoorpositioning.SwipeDismissListViewTouchListener;
 
 public class Buildings extends Activity {
 

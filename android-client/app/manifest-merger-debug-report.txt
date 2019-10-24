@@ -51,25 +51,25 @@ MERGED from com.android.support:support-v4:20.0.0:17:5
 		ADDED from AndroidManifest.xml:17:9
 	android:theme
 		ADDED from AndroidManifest.xml:19:9
-activity#com.example.indoorpositioning.Scan
+activity#com.example.indoorpositioning.Activity.Scan
 ADDED from AndroidManifest.xml:21:9
 	android:label
 		ADDED from AndroidManifest.xml:23:13
 	android:name
 		ADDED from AndroidManifest.xml:22:13
-activity#com.example.indoorpositioning.Positions
+activity#com.example.indoorpositioning.Activity.Positions
 ADDED from AndroidManifest.xml:26:9
 	android:label
 		ADDED from AndroidManifest.xml:28:13
 	android:name
 		ADDED from AndroidManifest.xml:27:13
-activity#com.example.indoorpositioning.Buildings
+activity#com.example.indoorpositioning.Activity.Buildings
 ADDED from AndroidManifest.xml:31:9
 	android:label
 		ADDED from AndroidManifest.xml:33:13
 	android:name
 		ADDED from AndroidManifest.xml:32:13
-activity#com.example.indoorpositioning.StartingScreen
+activity#com.example.indoorpositioning.Activity.StartingScreen
 ADDED from AndroidManifest.xml:36:9
 	android:label
 		ADDED from AndroidManifest.xml:38:13
@@ -85,11 +85,11 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:41:17
 	android:name
 		ADDED from AndroidManifest.xml:41:27
-activity#com.example.indoorpositioning.Locate
+activity#com.example.indoorpositioning.Activity.Locate
 ADDED from AndroidManifest.xml:46:9
 	android:name
 		ADDED from AndroidManifest.xml:46:19
-activity#com.example.indoorpositioning.FriendlyWifis
+activity#com.example.indoorpositioning.Activity.FriendlyWifis
 ADDED from AndroidManifest.xml:49:9
 	android:name
 		ADDED from AndroidManifest.xml:49:19

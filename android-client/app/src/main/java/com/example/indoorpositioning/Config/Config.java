@@ -1,8 +1,4 @@
-package com.example.indoorpositioning;
-
-/**
- * Created by ajnas on 1/11/17.
- */
+package com.example.indoorpositioning.Config;
 
 public class Config {
 

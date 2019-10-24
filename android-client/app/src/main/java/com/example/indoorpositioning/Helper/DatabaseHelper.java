@@ -1,18 +1,18 @@
-package com.example.indoorpositioning;
+package com.example.indoorpositioning.Helper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.indoorpositioning.PositionData;
+import com.example.indoorpositioning.Model.Router;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -47,9 +47,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-		db.execSQL("DROP TABLE IF EXISTS " + AP_CREATE);
-		db.execSQL("DROP TABLE IF EXISTS " + READINGS_CREATE);
-		onCreate(db);
+//		db.execSQL("DROP TABLE IF EXISTS " + AP_CREATE);
+//		db.execSQL("DROP TABLE IF EXISTS " + READINGS_CREATE);
+//		onCreate(db);
 	}
 
 	public int deleteReading(String building_id, String position_id) {

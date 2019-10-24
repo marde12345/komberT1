@@ -1,13 +1,11 @@
 package com.example.indoorpositioning;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -15,9 +13,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import android.util.Log;
 
-/**
- * Created by Sony on 4/19/2015.
- */
+import com.example.indoorpositioning.Model.Router;
+
+// Not Done Yet
 public class ScanBackground extends AsyncTask<Void, Void, PositionData> {
 
     PositionData pos;
