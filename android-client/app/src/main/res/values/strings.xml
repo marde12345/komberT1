@@ -6,6 +6,13 @@
     <string name="action_settings">Settings</string>
     <string name="spinner_prompt">Select Building</string>
 
+    <!--    Starting Screen-->
+    <string name="title_starting">Main Menu</string>
+    <string name="training">Training</string>
+    <string name="locate">Find Me!!!</string>
+    <string name="update">Update DB</string>
+
+
     <string name="warning">Warning</string>
     <string name="dialog_message">Building name has less than 4 characters. Proceed?</string>
 </resources>
