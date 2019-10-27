@@ -20,7 +20,6 @@ public class StartingScreen extends BaseActivity implements View.OnClickListener
         setContentView(R.layout.starting_screen);
         enableScrollView();
         setTitle("Menu");
-        getSupportActionBar().hide();
 
         cvLocate = findViewById(R.id.cvLocate);
         cvTrain = findViewById(R.id.cvTrain);
