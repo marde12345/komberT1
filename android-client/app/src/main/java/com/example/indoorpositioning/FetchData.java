@@ -3,6 +3,7 @@ package com.example.indoorpositioning;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ProgressBar;
@@ -112,6 +113,7 @@ public class FetchData extends AsyncTask<String, Integer, Integer> {
         dialogProgress = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
         dialogProgress.setTitleText(titleText);
         dialogProgress.setCancelable(false);
+        dialogProgress.getProgressHelper().setBarColor(Color.parseColor("#4A90E2"));
         if (contentText != null)
             dialogProgress.setContentText(contentText);
         dialogProgress.show();
