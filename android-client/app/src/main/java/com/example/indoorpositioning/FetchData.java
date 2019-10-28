@@ -30,7 +30,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class FetchData extends AsyncTask<String, Integer, Integer> {
     private String baseUrl = Config.BASE_URL;
     private Context context;
-    private SweetAlertDialog dialogProgress, dialogWarning, dialogError, dialogInfo;
+    private SweetAlertDialog dialogProgress, dialogWarning, dialogError, dialogInfo, dialogSuccess;
 
     public FetchData(Context context) {
         this.context = context;
@@ -185,5 +185,19 @@ public class FetchData extends AsyncTask<String, Integer, Integer> {
     public void hideError() {
         if (dialogError != null && dialogError.isShowing())
             dialogError.dismiss();
+    }
+
+    public void showSuccess(String titleText, @Nullable String contentText) {
+        hideSuccess();
+        dialogSuccess = new SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE);
+        dialogSuccess.setTitleText(titleText);
+        if (contentText != null)
+            dialogSuccess.setContentText(contentText);
+        dialogSuccess.show();
+    }
+
+    public void hideSuccess() {
+        if (dialogSuccess != null && dialogSuccess.isShowing())
+            dialogSuccess.dismiss();
     }
 }

@@ -15,7 +15,7 @@ public class BaseActivity extends AppCompatActivity {
 
     //    private Session mSession;
 //    private Retrofit mRetrofit;
-    private SweetAlertDialog dialogProgress, dialogWarning, dialogError, dialogInfo;
+    private SweetAlertDialog dialogProgress, dialogWarning, dialogError, dialogInfo, dialogSuccess;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -197,6 +197,20 @@ public class BaseActivity extends AppCompatActivity {
     public void hideError() {
         if (dialogError != null && dialogError.isShowing())
             dialogError.dismiss();
+    }
+
+    public void showSuccess(String titleText, @Nullable String contentText) {
+        hideSuccess();
+        dialogSuccess = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
+        dialogSuccess.setTitleText(titleText);
+        if (contentText != null)
+            dialogSuccess.setContentText(contentText);
+        dialogSuccess.show();
+    }
+
+    public void hideSuccess() {
+        if (dialogSuccess != null && dialogSuccess.isShowing())
+            dialogSuccess.dismiss();
     }
 
     public void showToast(String text) {
