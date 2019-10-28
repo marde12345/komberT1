@@ -49,8 +49,6 @@ public class FetchData extends AsyncTask<String, Integer, Integer> {
         HttpGet httpGet = new HttpGet(baseUrl + "");
         String json = null;
 
-        publishProgress(0);
-
         try {
             // Add your data
 
@@ -67,9 +65,13 @@ public class FetchData extends AsyncTask<String, Integer, Integer> {
                     return 1;
 
                 } catch (IOException e) {
+                    showError("Error",e.toString());
                     e.printStackTrace();
+                    return null;
                 } catch (JSONException e) {
+                    showError("Error",e.toString());
                     e.printStackTrace();
+                    return null;
                 }
 
             }
@@ -82,7 +84,6 @@ public class FetchData extends AsyncTask<String, Integer, Integer> {
 
         }
 
-        publishProgress(1);
         return 0;
     }
 
@@ -93,7 +94,7 @@ public class FetchData extends AsyncTask<String, Integer, Integer> {
                 showWarning("Warning", "Tidak bisa mengakses server");
                 break;
             case 1:
-                showInfo("Success", "Database berhasil diupdate");
+                showSuccess("Success", "Database berhasil diupdate");
                 break;
             default:
                 showError("Error", "Terjadi kesalahan");

@@ -36,8 +36,6 @@ public class StartingScreen extends BaseActivity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cvLocate:
-                startActivity(new Intent(StartingScreen.this, Locate.class));
-                break;
             case R.id.cvSubLocate:
                 startActivity(new Intent(StartingScreen.this, Locate.class));
                 break;
