@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.indoorpositioning.PositionData;
 import com.example.indoorpositioning.Model.Router;
@@ -50,6 +51,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //		db.execSQL("DROP TABLE IF EXISTS " + AP_CREATE);
 //		db.execSQL("DROP TABLE IF EXISTS " + READINGS_CREATE);
 //		onCreate(db);
+	}
+
+	public boolean deleteAll() {
+		SQLiteDatabase db = getWritableDatabase();
+		db.execSQL("DELETE FROM " + AP_TABLE);
+		db.execSQL("DELETE FROM " + READINGS_TABLE);
+		return true;
 	}
 
 	public int deleteReading(String building_id, String position_id) {
@@ -157,36 +165,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean updateDatabase(JSONArray buildings) throws JSONException {
         Gson gson=new Gson();
 
-        for(int i=0;i<buildings.length();i++){
-            JSONObject building=buildings.getJSONObject(i);
-            String building_id=building.getString("building_id");
+		for (int i = 0; i < buildings.length(); i++) {
+			JSONObject building = buildings.getJSONObject(i);
+			String building_id = building.getString("building_id");
 
-            ArrayList<PositionData> readings= null;
-            ArrayList<Router> friendlyWifis=null;
-
-
-
-            try {
-               Log.d("Readings",building.get("readings").toString());
-
-                readings = gson.fromJson(building.get("readings").toString(),new TypeToken<ArrayList<PositionData>>() {
-                }.getType());
-                friendlyWifis=gson.fromJson(building.get("friendly_wifis").toString()
-                        ,new TypeToken<ArrayList<Router>>() {
-                }.getType());
-                deleteBuilding(building_id);
-                for(int j=0;j<readings.size();j++){
-                    addReadings(building.getString("building_id"),readings.get(j));
-                }
-                addFriendlyWifis(building.getString("building_id"),friendlyWifis);
-
-            } catch (JSONException e) {
-                return false;
-            }
+			ArrayList<PositionData> readings = null;
+			ArrayList<Router> friendlyWifis = null;
 
 
+			try {
+				Log.d("Readings", building.get("readings").toString());
 
-        }
+				readings = gson.fromJson(building.get("readings").toString(), new TypeToken<ArrayList<PositionData>>() {
+				}.getType());
+				friendlyWifis = gson.fromJson(building.get("friendly_wifis").toString()
+						, new TypeToken<ArrayList<Router>>() {
+						}.getType());
+				deleteBuilding(building_id);
+				for (int j = 0; j < readings.size(); j++) {
+					addReadings(building.getString("building_id"), readings.get(j));
+				}
+				addFriendlyWifis(building.getString("building_id"), friendlyWifis);
+
+			} catch (JSONException e) {
+				return false;
+			}
+
+
+		}
         return true;
 
     }
