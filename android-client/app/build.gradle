@@ -33,4 +33,7 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.3'
     implementation 'com.airbnb.android:lottie:3.1.0'
+
+//    MAPSBOX
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.4.0'
 }

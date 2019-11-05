@@ -10,7 +10,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.indoorpositioning.PositionData;
 import com.example.indoorpositioning.Model.Router;
