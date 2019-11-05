@@ -45,7 +45,6 @@ public class Buildings extends Activity {
 		buildingName= findViewById(R.id.name);
         buildingName.addTextChangedListener(new TextWatcher() {
 
-
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 

@@ -2,6 +2,7 @@ package com.example.indoorpositioning;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -26,60 +27,64 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class Submit extends AsyncTask<String, Integer, JSONObject> {
 
-        private String baseUrl = Config.BASE_URL;
-        Context context;
-        public Submit(Context context){
-            this.context=context;
+    private String baseUrl = Config.BASE_URL_NATIVE;
+    private Context context;
+    private SweetAlertDialog dialogProgress, dialogWarning, dialogError, dialogInfo, dialogSuccess;
+
+    public Submit(Context context) {
+
+        this.context = context;
         }
 
-        @Override
-        protected JSONObject doInBackground(String... params) {
-            // TODO Auto-generated method stub
+    @Override
+    protected JSONObject doInBackground(String... params) {
+        // TODO Auto-generated method stub
+        try {
+            return postData(params[0]);
+        } catch (IOException e) {
+            return null;
+        }
+
+    }
+
+    protected void onPostExecute(JSONObject json) {
+
+        if (json == null) {
+//            showWarning("Null","JSON Null");
+            Toast.makeText(context, "Network Error", Toast.LENGTH_LONG).show();
+        } else {
+
             try {
-                return postData(params[0]);
-            } catch (IOException e) {
-                return null;
-            }
+                if (json.get("result").equals("success")) {
+//                    showSuccess("Success","Berhasil mengirim data ke server");
+                    Toast.makeText(context, "Success", Toast.LENGTH_LONG).show();
 
-        }
+                } else {
+//                    showError("Fail","Gagal mengirim data");
+                    Toast.makeText(context, "Failure", Toast.LENGTH_LONG).show();
 
-        protected void onPostExecute(JSONObject json) {
-
-            if (json == null)
-            {
-                Toast.makeText(context, "Network Error", Toast.LENGTH_LONG).show();
-            }
-            else {
-
-                try {
-                    if (json.get("result").equals("success")) {
-                        Toast.makeText(context, "Success", Toast.LENGTH_LONG).show();
-
-
-
-                    } else {
-                        Toast.makeText(context, "Failure", Toast.LENGTH_LONG).show();
-
-
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(context, "Network/Server Error", Toast.LENGTH_LONG).show();
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
+//                showWarning("Server Error","Cek Konfigurasi");
+                Toast.makeText(context, "Network/Server Error", Toast.LENGTH_LONG).show();
             }
-
-
         }
 
 
-        protected void onProgressUpdate(Integer... progress) {
+    }
 
-        }
 
-        public JSONObject postData(String jsonData) throws IOException {
+    protected void onProgressUpdate(Integer... progress) {
+
+    }
+
+    public JSONObject postData(String jsonData) throws IOException {
             // Create a new HttpClient and Post Header
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost(baseUrl + "submit");
@@ -121,6 +126,48 @@ public class Submit extends AsyncTask<String, Integer, JSONObject> {
                 // TODO Auto-generated catch block
                 return null;
             }
-        }
-
     }
+
+    public void showWarning(String titleText, @Nullable String contentText) {
+        hideWarning();
+        dialogWarning = new SweetAlertDialog(this.context, SweetAlertDialog.WARNING_TYPE);
+        dialogWarning.setTitleText(titleText);
+        if (contentText != null)
+            dialogWarning.setContentText(contentText);
+        dialogWarning.show();
+    }
+
+    public void hideWarning() {
+        if (dialogWarning != null && dialogWarning.isShowing())
+            dialogWarning.dismiss();
+    }
+
+    public void showError(String titleText, @Nullable String contentText) {
+        hideError();
+        dialogError = new SweetAlertDialog(this.context, SweetAlertDialog.ERROR_TYPE);
+        dialogError.setTitleText(titleText);
+        if (contentText != null)
+            dialogError.setContentText(contentText);
+        dialogError.show();
+    }
+
+    public void hideError() {
+        if (dialogError != null && dialogError.isShowing())
+            dialogError.dismiss();
+    }
+
+    public void showSuccess(String titleText, @Nullable String contentText) {
+        hideSuccess();
+        dialogSuccess = new SweetAlertDialog(this.context, SweetAlertDialog.SUCCESS_TYPE);
+        dialogSuccess.setTitleText(titleText);
+        if (contentText != null)
+            dialogSuccess.setContentText(contentText);
+        dialogSuccess.show();
+    }
+
+    public void hideSuccess() {
+        if (dialogSuccess != null && dialogSuccess.isShowing())
+            dialogSuccess.dismiss();
+    }
+
+}
