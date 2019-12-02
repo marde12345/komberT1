@@ -2,7 +2,6 @@ package com.example.indoorpositioning;
 
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -32,7 +31,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Submit extends AsyncTask<String, Integer, JSONObject> {
 
-    private String baseUrl = Config.BASE_URL_NATIVE;
+    private String baseUrl = Config.BASE_URL;
     private Context context;
     private SweetAlertDialog dialogProgress, dialogWarning, dialogError, dialogInfo, dialogSuccess;
 

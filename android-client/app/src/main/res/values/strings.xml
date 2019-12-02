@@ -6,12 +6,14 @@
     <string name="action_settings">Settings</string>
     <string name="spinner_prompt">Select Building</string>
     <string name="wips">WIPS</string>
+    <string name="apptoken">pk.eyJ1IjoibWFyZGUxMjM0NSIsImEiOiJjazJseDl4bXcwYzBkM2NwbjV6emlzaHNwIn0.jdZJ0w73lMcwnTN4w11HFw</string>
 
     <!--    Starting Screen-->
     <string name="title_starting">Main Menu</string>
     <string name="training">Training</string>
     <string name="locate">Find Me!!!</string>
     <string name="update">Update App</string>
+    <string name="mapsbox">Maps Box</string>
 
 
     <string name="warning">Warning</string>

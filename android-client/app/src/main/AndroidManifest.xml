@@ -5,56 +5,53 @@
     android:versionCode="1"
     android:versionName="1.0">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon_wips"
-        android:roundIcon="@mipmap/icon_wips_round"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/icon_wips_round"
         android:theme="@style/AppTheme">
-
+        <activity
+            android:name=".IndoorMapsActivity"
+            android:label="@string/mapsbox"
+            android:theme="@style/AppThemeHome"></activity>
         <activity
             android:name=".Activity.Scan"
-            android:label="Scan">
-
-        </activity>
+            android:label="Scan"
+            android:theme="@style/AppThemeHome"></activity>
         <activity
             android:name=".Activity.Positions"
-            android:label="Calibrate">
-
-        </activity>
+            android:label="Calibrate"
+            android:theme="@style/AppThemeHome"></activity>
         <activity
             android:name=".Activity.Buildings"
-            android:label="Buildings">
-
-        </activity>
+            android:label="Buildings"
+            android:theme="@style/AppThemeHome"></activity>
         <activity
             android:name=".Activity.StartingScreen"
             android:label="@string/app_name"
             android:theme="@style/AppThemeHome">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"></action>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".Activity.Locate"
-            android:label="Locate">
-
-        </activity>
+            android:label="Locate"
+            android:theme="@style/AppThemeHome"></activity>
         <activity
             android:name=".Activity.FriendlyWifis"
-            android:label="Choose Friendly Wifis">
-
-        </activity>
+            android:label="Choose Friendly Wifis"
+            android:theme="@style/AppThemeHome"></activity>
         <activity android:name=".BaseActivity" />
-
     </application>
 
 </manifest>

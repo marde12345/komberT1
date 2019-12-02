@@ -1,6 +1,5 @@
 package com.example.indoorpositioning;
 
-
 import com.example.indoorpositioning.Model.Router;
 
 import java.io.Serializable;

@@ -1,13 +1,9 @@
 package com.example.indoorpositioning;
 
-
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.indoorpositioning.Config.Config;
 import com.example.indoorpositioning.Helper.DatabaseHelper;
