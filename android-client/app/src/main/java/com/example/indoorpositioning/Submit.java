@@ -31,7 +31,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Submit extends AsyncTask<String, Integer, JSONObject> {
 
-    private String baseUrl = Config.BASE_URL_NATIVE;
+    private String baseUrl = Config.BASE_URL;
     private Context context;
     private SweetAlertDialog dialogProgress, dialogWarning, dialogError, dialogInfo, dialogSuccess;
 

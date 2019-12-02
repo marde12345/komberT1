@@ -30,7 +30,7 @@ public class Scan extends Activity {
 	private TextView warning;
 	private TextView timeRemaining;
 	private Button calibrate;
-	private int readingCount = 15;
+	private int readingCount = 5;
 	private int currentCount;
 	String currentPositionName;
 	WifiManager wifi;
