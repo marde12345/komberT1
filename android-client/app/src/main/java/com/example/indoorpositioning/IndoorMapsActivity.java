@@ -1,16 +1,19 @@
 package com.example.indoorpositioning;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.Button;
 
 import com.mapbox.geojson.Point;
+import com.mapbox.geojson.Polygon;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
+import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
@@ -18,6 +21,7 @@ import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.style.layers.FillLayer;
 import com.mapbox.mapboxsdk.style.layers.LineLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
+import com.mapbox.turf.TurfJoins;
 
 import static com.mapbox.mapboxsdk.style.expressions.Expression.exponential;
 import static com.mapbox.mapboxsdk.style.expressions.Expression.interpolate;
@@ -40,6 +44,7 @@ public class IndoorMapsActivity extends BaseActivity {
     private MapView mapView;
     private GeoJsonSource indoorBuildingSource;
     private List<List<Point>> boundingBoxList;
+    private View levelButtons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,21 +58,12 @@ public class IndoorMapsActivity extends BaseActivity {
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onMapReady(@NonNull MapboxMap mapboxMap) {
+            public void onMapReady(@NonNull final MapboxMap mapboxMap) {
                 mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
-
-                        final List<Point> boundingBox = new ArrayList<>();
-
-                        boundingBox.add(Point.fromLngLat(-77.03791, 38.89715));
-                        boundingBox.add(Point.fromLngLat(-77.03791, 38.89811));
-                        boundingBox.add(Point.fromLngLat(-77.03532, 38.89811));
-                        boundingBox.add(Point.fromLngLat(-77.03532, 38.89708));
-
-                        boundingBoxList = new ArrayList<>();
-                        boundingBoxList.add(boundingBox);
-
+                        levelButtons = findViewById(R.id.floor_level_buttons);
+                        
                         indoorBuildingSource = new GeoJsonSource("indoor-building", loadJsonFromAsset("lt3.geojson"));
 
                         style.addSource(indoorBuildingSource);
@@ -75,13 +71,32 @@ public class IndoorMapsActivity extends BaseActivity {
                         loadBuildingLayer(style);
                     }
                 });
+                Button buttonMisLevel = findViewById(R.id.mis);
+                buttonMisLevel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        indoorBuildingSource.setGeoJson(loadJsonFromAsset("mis-v1.geojson"));
+                        CameraPosition position = new CameraPosition.Builder()
+                                .target(new LatLng(-7.2799, 112.7976))
+                                .zoom(21)
+                                .build();
+                        mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(position), 3000);
+                    }
+                });
+                Button buttonLt3Level = findViewById(R.id.lt3);
+                buttonLt3Level.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        indoorBuildingSource.setGeoJson(loadJsonFromAsset("lt3.geojson"));
+                        CameraPosition position = new CameraPosition.Builder()
+                                .target(new LatLng(-7.2797, 112.7973))
+                                .zoom(18)
+                                .build();
+                        mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(position), 3000);
+                    }
+                });
             }
         });
-    }
-
-    private void createMap(Bundle savedInstanceState) {
-
-
     }
 
     @Override
@@ -124,6 +139,24 @@ public class IndoorMapsActivity extends BaseActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mapView.onSaveInstanceState(outState);
+    }
+
+    private void hideLevelButton() {
+// When the user moves away from our bounding box region or zooms out far enough the floor level
+// buttons are faded out and hidden.
+        AlphaAnimation animation = new AlphaAnimation(1.0f, 0.0f);
+        animation.setDuration(500);
+        levelButtons.startAnimation(animation);
+        levelButtons.setVisibility(View.GONE);
+    }
+
+    private void showLevelButton() {
+// When the user moves inside our bounding box region or zooms in to a high enough zoom level,
+// the floor level buttons are faded out and hidden.
+        AlphaAnimation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(500);
+        levelButtons.startAnimation(animation);
+        levelButtons.setVisibility(View.VISIBLE);
     }
 
     private void loadBuildingLayer(@NonNull Style style) {
